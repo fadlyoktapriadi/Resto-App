@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resto_app/screen/detail/detail_screen.dart';
 import 'package:resto_app/screen/home/home_screen.dart';
 import 'package:resto_app/styles/theme/resto_theme.dart';
 
@@ -16,7 +17,7 @@ class MainApp extends StatelessWidget {
       theme: RestoTheme.lightTheme,
       darkTheme: RestoTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const HomeScreen(),
+      home: const DetailScreen(),
     );
   }
 }
