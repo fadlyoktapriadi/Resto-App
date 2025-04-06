@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:resto_app/data/model/restaurant.dart';
 
-class resto_card extends StatelessWidget {
-  const resto_card({super.key});
+class RestoCard extends StatelessWidget {
+
+  final Restaurant restaurant;
+  final Function() onTap;
+
+  const RestoCard({super.key, required this.restaurant, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
       return InkWell(
-        onTap: () {
-         //
-        },
+        onTap: onTap,
         child: Card(
           elevation: 1.0,
           child: Row(
@@ -20,7 +23,7 @@ class resto_card extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: Image.network(
-                      'https://restaurant-api.dicoding.dev/images/large/15',
+                      'https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}',
                       fit: BoxFit.cover,
                       height: 120.0,
                   ),
@@ -39,7 +42,7 @@ class resto_card extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "Kintan Bakery",
+                              restaurant.name,
                                overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                                 style: Theme.of(context).textTheme.titleMedium,
@@ -71,7 +74,7 @@ class resto_card extends StatelessWidget {
                                     size: 14.0,
                                   ),
                                   Text(
-                                    "4.5",
+                                    restaurant.rating.toString(),
                                     style: Theme.of(context).textTheme.bodyMedium,
                                   ),
                                 ],
@@ -90,7 +93,7 @@ class resto_card extends StatelessWidget {
                           ),
                           const SizedBox(width: 4), // Add some space between icon and text
                           Text(
-                            "Jl. Mundak Jaya Blok Badak",
+                            restaurant.city,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: Theme.of(context).textTheme.labelMedium,
@@ -99,7 +102,7 @@ class resto_card extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi",
+                        restaurant.description,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: Theme.of(context).textTheme.labelMedium,

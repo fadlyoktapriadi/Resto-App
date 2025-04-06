@@ -8,9 +8,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Stack(
+      body: Stack(
           children: [
             Image.network(
               'https://restaurant-api.dicoding.dev/images/large/15',
@@ -19,7 +17,7 @@ class DetailScreen extends StatelessWidget {
             ),
             ListView(
               children: [
-                const SizedBox(height: 240),
+                const SizedBox(height: 210),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.vertical(
@@ -288,7 +286,6 @@ class DetailScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }

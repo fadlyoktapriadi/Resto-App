@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:resto_app/helper/resto_list_result_state.dart';
+import 'package:resto_app/provider/home/resto_list_provider.dart';
 import 'package:resto_app/screen/home/resto_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    Future.microtask((){
+      context.read<RestoListProvider>().fetchRestaurantList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +53,40 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Expanded(
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return resto_card();
-                  },
+                child: Consumer<RestoListProvider>(
+                    builder: (context, value, child) {
+                      return switch (value.resultState) {
+                        RestoListNoneState() => const Center(
+                            child: Text('No Data'),
+                          ),
+                        RestoListLoadingState() => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        RestoListErrorState(message: var message) => Center(
+                            child: Text(message),
+                          ),
+                        RestoListLoadedState(restaurantList: var restaurantList) =>
+                            ListView.builder(
+                            itemCount: restaurantList.length,
+                            itemBuilder: (context, index) {
+                              final restaurant = restaurantList[index];
+
+                              return RestoCard(
+                                restaurant: restaurant,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/detail',
+                                    arguments: restaurant.id,
+                                  );
+                                },
+                              );
+                            },
+                        ),
+                      };
+                    }
+                )
                 ),
-              ),
             ],
         ),
       ),
