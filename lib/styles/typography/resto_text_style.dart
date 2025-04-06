@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final myTextTheme = TextTheme(
-  displayLarge: GoogleFonts.rubik(
+  displayLarge: GoogleFonts.protestRiot(
     fontSize: 57,
   ),
-  displayMedium: GoogleFonts.rubik(
+  displayMedium: GoogleFonts.protestRiot(
     fontSize: 45,
   ),
-  displaySmall: GoogleFonts.rubik(
+  displaySmall: GoogleFonts.protestRiot(
     fontSize: 36,
   ),
-  headlineLarge: GoogleFonts.rubik(
+  headlineLarge: GoogleFonts.protestRiot(
     fontSize: 32,
   ),
-  headlineMedium: GoogleFonts.rubik(
+  headlineMedium: GoogleFonts.protestRiot(
     fontSize: 28,
   ),
-  headlineSmall: GoogleFonts.rubik(
+  headlineSmall: GoogleFonts.protestRiot(
     fontSize: 24,
   ),
   titleLarge: GoogleFonts.rubik(
@@ -32,25 +32,22 @@ final myTextTheme = TextTheme(
     fontSize: 14,
     fontWeight: FontWeight.bold,
   ),
-  labelLarge: GoogleFonts.rubik(
+  labelLarge: GoogleFonts.quicksand(
     fontSize: 14,
-    fontWeight: FontWeight.bold,
   ),
-  labelMedium: GoogleFonts.rubik(
+  labelMedium: GoogleFonts.quicksand(
     fontSize: 12,
-    fontWeight: FontWeight.bold,
   ),
-  labelSmall: GoogleFonts.rubik(
+  labelSmall: GoogleFonts.quicksand(
     fontSize: 11,
-    fontWeight: FontWeight.bold,
   ),
-  bodyLarge: GoogleFonts.rubik(
+  bodyLarge: GoogleFonts.quicksand(
     fontSize: 16,
   ),
-  bodyMedium: GoogleFonts.rubik(
+  bodyMedium: GoogleFonts.quicksand(
     fontSize: 14,
   ),
-  bodySmall: GoogleFonts.rubik(
+  bodySmall: GoogleFonts.quicksand(
     fontSize: 12,
     fontStyle: FontStyle.italic,
   ),

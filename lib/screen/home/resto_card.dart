@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+
+class resto_card extends StatelessWidget {
+  const resto_card({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+      return InkWell(
+        onTap: () {
+         //
+        },
+        child: Card(
+          elevation: 1.0,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Image.network(
+                      'https://restaurant-api.dicoding.dev/images/large/15',
+                      fit: BoxFit.cover,
+                      height: 120.0,
+                  ),
+                ),
+              ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Kintan Bakery",
+                               overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                                style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Card(
+                            elevation: 1.0,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              side: BorderSide(
+                                color: Theme.of(context).colorScheme.primary, // Set the border color
+                                width: 1.0, // Set the border width
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4.0,
+                                horizontal: 8.0,
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                    size: 14.0,
+                                  ),
+                                  Text(
+                                    "4.5",
+                                    style: Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.location_on,
+                            color: Colors.grey,
+                            size: 14.0,
+                          ),
+                          const SizedBox(width: 4), // Add some space between icon and text
+                          Text(
+                            "Jl. Mundak Jaya Blok Badak",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ),
+                        ]
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+
