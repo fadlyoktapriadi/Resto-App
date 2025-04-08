@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:resto_app/data/model/detail_restaurant_response.dart';
 import 'package:resto_app/data/model/restaurant_list_response.dart';
+import 'package:resto_app/data/model/search_restaurant_response.dart';
 
 class ApiService {
   static const String _baseUrl = 'https://restaurant-api.dicoding.dev';
@@ -30,6 +31,21 @@ class ApiService {
         return DetailRestaurantResponse.fromJson(jsonDecode(response.body));
       } else {
         throw Exception('Failed to load restaurant detail');
+      }
+    } on SocketException {
+      throw Exception('No Internet connection');
+    } on http.ClientException {
+      throw Exception('Failed to connect to the server');
+    }
+  }
+
+  Future<SearchRestaurantResponse> getSearchRestaurant(String query) async {
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl/search?q=$query'));
+      if (response.statusCode == 200) {
+        return SearchRestaurantResponse.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load restaurant list');
       }
     } on SocketException {
       throw Exception('No Internet connection');
