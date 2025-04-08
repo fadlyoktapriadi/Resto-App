@@ -22,11 +22,14 @@ class RestoCard extends StatelessWidget {
                   padding: const EdgeInsets.all(6.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
-                    child: Image.network(
-                      'https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}',
-                      fit: BoxFit.cover,
-                      height: 120.0,
-                  ),
+                    child: Hero(
+                      tag: restaurant.pictureId,
+                      child: Image.network(
+                        'https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}',
+                        fit: BoxFit.cover,
+                        height: 120.0,
+                                        ),
+                    ),
                 ),
               ),
               ),
