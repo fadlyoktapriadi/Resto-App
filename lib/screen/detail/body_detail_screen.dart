@@ -21,6 +21,25 @@ class BodyDetailScreen extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 30,
+          ),
+          child: CircleAvatar(
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(50), // Ensures the ripple effect is circular
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
+        ),
         ListView(
           children: [
             const SizedBox(height: 210),
