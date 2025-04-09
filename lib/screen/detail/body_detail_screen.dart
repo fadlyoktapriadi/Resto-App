@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resto_app/data/model/detail_restaurant_response.dart';
 import 'package:resto_app/screen/detail/item_card_detail.dart';
-import 'package:resto_app/screen/detail/review_detail_screen.dart';
+import 'package:resto_app/screen/detail/review_detail.dart';
 
 class BodyDetailScreen extends StatelessWidget {
 
@@ -19,25 +19,6 @@ class BodyDetailScreen extends StatelessWidget {
             'https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}',
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.fill,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical: 30,
-          ),
-          child: CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.surface,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(50), // Ensures the ripple effect is circular
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
-              child: Icon(
-                Icons.arrow_back,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
           ),
         ),
         ListView(
@@ -229,45 +210,32 @@ class BodyDetailScreen extends StatelessWidget {
                     ),
                   ),
 
-                  ReviewDetailScreen(),
+                  ReviewDetail(customerReviews: restaurant.customerReviews),
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: restaurant.customerReviews.length, // Use the actual list length
-                      itemBuilder: (context, index) {
-                        final review = restaurant.customerReviews[index]; // Access each review
-                        return Card(
-                          elevation: 2.0,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  review.name, // Display the reviewer's name
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  review.review, // Display the review comment
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
                   const SizedBox(height: 30),
                 ],
               ),
             ),
           ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 30,
+          ),
+          child: CircleAvatar(
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(50), // Ensures the ripple effect is circular
+              onTap: () {
+                Navigator.pop(context, '/');
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
         ),
       ],
     );

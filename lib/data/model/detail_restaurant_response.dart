@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'customer_review.dart';
+
 DetailRestaurantResponse detailRestaurantResponseFromJson(String str) => DetailRestaurantResponse.fromJson(json.decode(str));
 
 String detailRestaurantResponseToJson(DetailRestaurantResponse data) => json.encode(data.toJson());
@@ -97,30 +99,6 @@ class Category {
 
   Map<String, dynamic> toJson() => {
     "name": name,
-  };
-}
-
-class CustomerReview {
-  String name;
-  String review;
-  String date;
-
-  CustomerReview({
-    required this.name,
-    required this.review,
-    required this.date,
-  });
-
-  factory CustomerReview.fromJson(Map<String, dynamic> json) => CustomerReview(
-    name: json["name"],
-    review: json["review"],
-    date: json["date"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "name": name,
-    "review": review,
-    "date": date,
   };
 }
 
