@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resto_app/data/api/api_service.dart';
-import 'package:resto_app/provider/detail/resto_add_review_provider.dart';
+import 'package:resto_app/provider/detail/resto_review_provider.dart';
 import 'package:resto_app/provider/home/resto_list_provider.dart';
 import 'package:resto_app/provider/search/query_search_provider.dart';
 import 'package:resto_app/provider/search/resto_search_provider.dart';

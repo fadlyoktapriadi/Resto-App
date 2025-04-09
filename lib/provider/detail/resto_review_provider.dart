@@ -15,7 +15,6 @@ class RestoReviewProvider with ChangeNotifier {
   Future<void> addReview(String id, String name, String review) async {
     try {
       _resultState = RestoReviewLoadingState();
-      notifyListeners();
 
       final addReview = await _apiService.postReview(id, name, review);
       if (addReview.error) {
@@ -25,6 +24,8 @@ class RestoReviewProvider with ChangeNotifier {
       }
     } catch (e) {
       throw Exception('Failed to add review: $e');
+    } finally {
+      notifyListeners();
     }
   }
 }

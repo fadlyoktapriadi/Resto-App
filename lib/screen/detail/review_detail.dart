@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resto_app/data/model/customer_review.dart';
-import 'package:resto_app/provider/detail/resto_add_review_provider.dart';
+import 'package:resto_app/provider/detail/resto_review_provider.dart';
 import 'package:resto_app/helper/resto_review_result_state.dart';
 
 class ReviewDetail extends StatefulWidget {
@@ -86,6 +86,7 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
                             );
                             _nameController.clear();
                             _reviewController.clear();
+
                           } else if (provider.resultState is RestoReviewErrorState) {
                             final errorState = provider.resultState as RestoReviewErrorState;
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -122,7 +123,7 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
             child: Consumer<RestoReviewProvider>(
               builder: (context, provider, child) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
                   child: ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -134,6 +135,9 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
                           ? (provider.resultState as RestoReviewLoadedState).customerReviews
                           : widget.customerReviews;
                       final review = reviews[index];
+
+                      debugPrint("CEK ERROR: ${provider.resultState}");
+
                       return Card(
                         elevation: 2.0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
