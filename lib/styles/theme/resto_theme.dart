@@ -18,6 +18,9 @@ class RestoTheme {
       labelLarge: myTextTheme.labelLarge,
       labelMedium: myTextTheme.labelMedium,
       labelSmall: myTextTheme.labelSmall,
+      bodyLarge: myTextTheme.bodyLarge,
+      bodyMedium: myTextTheme.bodyMedium,
+      bodySmall: myTextTheme.bodySmall,
     );
   }
 

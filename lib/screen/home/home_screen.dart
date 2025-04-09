@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    // Fetch initial restaurant list
     Future.microtask(() {
       context.read<RestoListProvider>().fetchRestaurantList();
     });

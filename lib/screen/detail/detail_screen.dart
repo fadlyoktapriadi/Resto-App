@@ -18,7 +18,6 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     Future.microtask((){

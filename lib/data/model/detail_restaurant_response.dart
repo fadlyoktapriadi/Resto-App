@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final detailRestaurantResponse = detailRestaurantResponseFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'customer_review.dart';

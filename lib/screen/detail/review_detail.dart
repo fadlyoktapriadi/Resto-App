@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:resto_app/data/model/customer_review.dart';
 import 'package:resto_app/provider/detail/resto_review_provider.dart';
 import 'package:resto_app/helper/resto_review_result_state.dart';
+import 'package:resto_app/screen/detail/item_card_review.dart';
 
 class ReviewDetail extends StatefulWidget {
 
@@ -11,10 +12,10 @@ class ReviewDetail extends StatefulWidget {
   const ReviewDetail({super.key, required this.customerReviews});
 
   @override
-  State<ReviewDetail> createState() => _ReviewDetailFormXState();
+  State<ReviewDetail> createState() => _ReviewDetailState();
 }
 
-class _ReviewDetailFormXState extends State<ReviewDetail> {
+class _ReviewDetailState extends State<ReviewDetail> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _reviewController = TextEditingController();
@@ -45,6 +46,7 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
                     labelText: 'Name',
                     border: OutlineInputBorder(),
                   ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your name';
@@ -59,6 +61,7 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
                     labelText: 'Review',
                     border: OutlineInputBorder(),
                   ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   maxLines: 1,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -89,6 +92,7 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
 
                           } else if (provider.resultState is RestoReviewErrorState) {
                             final errorState = provider.resultState as RestoReviewErrorState;
+
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Error: ${errorState.message}')),
                             );
@@ -118,49 +122,29 @@ class _ReviewDetailFormXState extends State<ReviewDetail> {
               ],
             ),
           ),
+          const SizedBox(height: 16),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 0.0),
             child: Consumer<RestoReviewProvider>(
               builder: (context, provider, child) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                  child: ListView.builder(
+                return ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: provider.resultState is RestoReviewLoadedState
                         ? (provider.resultState as RestoReviewLoadedState).customerReviews.length
                         : widget.customerReviews.length,
                     itemBuilder: (context, index) {
-                      final reviews = provider.resultState is RestoReviewLoadedState
-                          ? (provider.resultState as RestoReviewLoadedState).customerReviews
+                      final reviews = provider
+                          .resultState is RestoReviewLoadedState
+                          ? (provider.resultState as RestoReviewLoadedState)
+                          .customerReviews
                           : widget.customerReviews;
                       final review = reviews[index];
 
-                      debugPrint("CEK ERROR: ${provider.resultState}");
-
-                      return Card(
-                        elevation: 2.0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                review.name,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                review.review,
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                            ],
-                          ),
-                        ),
+                      return ReviewCard(
+                          review: review
                       );
-                    },
-                  ),
+                    }
                 );
               },
             ),

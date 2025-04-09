@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:resto_app/data/model/restaurant.dart';
 
 SearchRestaurantResponse searchRestaurantResponseFromJson(String str) => SearchRestaurantResponse.fromJson(json.decode(str));

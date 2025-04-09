@@ -14,7 +14,6 @@ class RestoSearchProvider extends ChangeNotifier {
 
   Future<void> fetchRestaurantSearch(String query) async {
     if (query.isEmpty) {
-      // Set state to NoneState if the query is empty
       _resultState = RestoSearchNoneState();
       notifyListeners();
       return;

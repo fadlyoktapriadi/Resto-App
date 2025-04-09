@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resto_app/data/api/api_service.dart';
-import 'package:resto_app/helper/resto_detail_result_state.dart';
 import 'package:resto_app/helper/resto_review_result_state.dart';
 
 class RestoReviewProvider with ChangeNotifier {
