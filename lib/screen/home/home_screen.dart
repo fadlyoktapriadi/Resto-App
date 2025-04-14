@@ -53,12 +53,34 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(
-                  'Resto App.',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(
+                      'Resto App.',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/favorite');
+                        },
+                        icon: const Icon(Icons.favorite),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/settings');
+                        },
+                        icon: const Icon(Icons.settings),
+                      ),
+                    ],
+                  )
+                ],
               ),
               const SizedBox(height: 8),
               SearchBar(

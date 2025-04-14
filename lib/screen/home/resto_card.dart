@@ -28,10 +28,11 @@ class RestoCard extends StatelessWidget {
                         'https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}',
                         fit: BoxFit.cover,
                         height: 120.0,
-                                        ),
+                        errorBuilder: (context, error, stackTrace) => Image.asset('assets/images/error_image.png'),
+                        ),
+                      ),
                     ),
                 ),
-              ),
               ),
               Expanded(
                 flex: 2,
