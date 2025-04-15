@@ -46,11 +46,12 @@ class _FavoriteIconState extends State<FavoriteIcon> {
         favoriteIconProvider.isFavorite = !isFavorited;
         localDatabaseProvider.loadAllFavoriteResto();
       },
-      icon: Icon(
-        context.watch<FavoriteIconProvider>().isFavorite
-            ? Icons.favorite
-            : Icons.favorite_border,
-      ),
+        icon: Icon(
+          context.watch<FavoriteIconProvider>().isFavorite
+              ? Icons.favorite
+              : Icons.favorite_border,
+          color: Colors.redAccent // Default color if not favorited
+        )
     );
   }
 }

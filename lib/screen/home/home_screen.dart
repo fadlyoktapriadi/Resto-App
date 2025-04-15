@@ -60,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Text(
                       'Resto App.',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        color: Theme.of(context).primaryColor
+                      ),
                     ),
                   ),
                   Row(
@@ -70,13 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {
                           Navigator.pushNamed(context, '/favorite');
                         },
-                        icon: const Icon(Icons.favorite),
+                        icon: Icon(Icons.favorite_rounded, color: Theme.of(context).primaryColor),
                       ),
                       IconButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/settings');
                         },
-                        icon: const Icon(Icons.settings),
+                        icon: Icon(Icons.settings, color: Theme.of(context).primaryColor,),
                       ),
                     ],
                   )

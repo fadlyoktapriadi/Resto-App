@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:resto_app/data/model/detail_restaurant_response.dart';
+import 'package:resto_app/data/model/restaurant.dart';
 import 'package:resto_app/screen/detail/item_card_detail.dart';
 import 'package:resto_app/screen/detail/review_detail.dart';
+import 'package:resto_app/screen/favorite/favorite_icon.dart';
 
 class BodyDetailScreen extends StatelessWidget {
 
@@ -247,16 +249,13 @@ class BodyDetailScreen extends StatelessWidget {
               ),
               child: CircleAvatar(
                 backgroundColor: Theme.of(context).colorScheme.surface,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(50), // Ensures the ripple effect is circular
-                  onTap: () {
-                    Navigator.pushNamed(context, '/favorite');
-                  },
-                  child: Icon(
-                    Icons.favorite,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
+                child: FavoriteIcon(restaurant: Restaurant(
+                    id: restaurant.id,
+                    name: restaurant.name,
+                    description: restaurant.description,
+                    pictureId: restaurant.pictureId,
+                    city: restaurant.city,
+                    rating: restaurant.rating))
               ),
             ),
           ],

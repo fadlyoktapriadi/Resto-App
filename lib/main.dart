@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:resto_app/data/api/api_service.dart';
 import 'package:resto_app/data/local/local_database_service.dart';
 import 'package:resto_app/provider/detail/resto_review_provider.dart';
+import 'package:resto_app/provider/favorite/favorite_icon_provider.dart';
 import 'package:resto_app/provider/favorite/local_database_provider.dart';
 import 'package:resto_app/provider/home/resto_list_provider.dart';
 import 'package:resto_app/provider/search/query_search_provider.dart';
@@ -39,6 +40,9 @@ void main() {
           create: (context) => LocalDatabaseProvider(
             context.read<LocalDatabaseService>(),
           ),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FavoriteIconProvider(),
         ),
       ],
       child: const MainApp(),

@@ -23,16 +23,26 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body: SafeArea(
-          child:
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+        body: SafeArea(
+          child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(
+                      'Resto App.',
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Theme.of(context).primaryColor,
+                    ),
+                    )
+                  ),
+                  const SizedBox(height: 8),
                 Text("Favorite Restaurant",
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 12,),
                 Expanded(
@@ -58,7 +68,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("No Bookmarked"),
+                              Text("No Restaurant Favorite Found"),
                             ],
                           ),
                         ),
