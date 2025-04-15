@@ -8,12 +8,14 @@ import 'package:resto_app/provider/favorite/local_database_provider.dart';
 import 'package:resto_app/provider/home/resto_list_provider.dart';
 import 'package:resto_app/provider/search/query_search_provider.dart';
 import 'package:resto_app/provider/search/resto_search_provider.dart';
-import 'package:resto_app/provider/setting/SharedPreferecesProvider.dart';
+import 'package:resto_app/provider/setting/local_notification_provider.dart';
+import 'package:resto_app/provider/setting/shared_preferences_provider.dart';
 import 'package:resto_app/screen/detail/detail_screen.dart';
 import 'package:resto_app/screen/favorite/favorite_screen.dart';
 import 'package:resto_app/screen/home/home_screen.dart';
 import 'package:resto_app/screen/navigation_route.dart';
 import 'package:resto_app/screen/setting/setting_screen.dart';
+import 'package:resto_app/services/local_notification_service.dart';
 import 'package:resto_app/styles/theme/resto_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data/local/shared_preferences_service.dart';
@@ -58,6 +60,17 @@ void main() async {
           create: (context) => SharedPreferencesProvider(
             context.read<SharedPreferencesService>(),
           ),
+        ),
+        Provider(
+          create: (context) => LocalNotificationService(
+          )
+            ..init()
+            ..configureLocalTimeZone(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LocalNotificationProvider(
+            context.read<LocalNotificationService>(),
+          )..requestPermissions(),
         ),
       ],
       child: const MainApp(),
