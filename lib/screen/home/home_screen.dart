@@ -5,7 +5,6 @@ import 'package:resto_app/helper/resto_search_result_state.dart';
 import 'package:resto_app/provider/home/resto_list_provider.dart';
 import 'package:resto_app/provider/search/query_search_provider.dart';
 import 'package:resto_app/provider/search/resto_search_provider.dart';
-import 'package:resto_app/provider/setting/local_notification_provider.dart';
 import 'package:resto_app/screen/home/resto_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,11 +16,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-
-
-  Future<void> _scheduleDailyTenAMNotification() async {
-    context.read<LocalNotificationProvider>().scheduleDailyTenAMNotification();
-  }
 
   @override
   void initState() {
