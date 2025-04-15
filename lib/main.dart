@@ -8,14 +8,21 @@ import 'package:resto_app/provider/favorite/local_database_provider.dart';
 import 'package:resto_app/provider/home/resto_list_provider.dart';
 import 'package:resto_app/provider/search/query_search_provider.dart';
 import 'package:resto_app/provider/search/resto_search_provider.dart';
+import 'package:resto_app/provider/setting/SharedPreferecesProvider.dart';
 import 'package:resto_app/screen/detail/detail_screen.dart';
 import 'package:resto_app/screen/favorite/favorite_screen.dart';
 import 'package:resto_app/screen/home/home_screen.dart';
 import 'package:resto_app/screen/navigation_route.dart';
+import 'package:resto_app/screen/setting/setting_screen.dart';
 import 'package:resto_app/styles/theme/resto_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'data/local/shared_preferences_service.dart';
 import 'provider/detail/resto_detail_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+
   runApp(
     MultiProvider(
       providers: [
@@ -44,6 +51,14 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => FavoriteIconProvider(),
         ),
+        Provider(
+          create: (context) => SharedPreferencesService(prefs),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SharedPreferencesProvider(
+            context.read<SharedPreferencesService>(),
+          ),
+        ),
       ],
       child: const MainApp(),
     ),
@@ -55,14 +70,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final sharedPreferencesProvider = Provider.of<SharedPreferencesProvider>(context);
+
     return MaterialApp(
       theme: RestoTheme.lightTheme,
       darkTheme: RestoTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: sharedPreferencesProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       routes: {
         NavigationRoute.mainRoute.name: (context) => const HomeScreen(),
         NavigationRoute.detailRoute.name: (context) => DetailScreen(id: ModalRoute.of(context)!.settings.arguments as String),
         NavigationRoute.favoriteRoute.name: (context) => const FavoriteScreen(),
+        NavigationRoute.settingRoute.name: (context) => const SettingScreen(),
       },
     );
   }
