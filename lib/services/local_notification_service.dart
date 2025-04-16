@@ -105,7 +105,6 @@ class LocalNotificationService {
       channelName,
       importance: Importance.max,
       priority: Priority.high,
-      sound: const RawResourceAndroidNotificationSound('slow_spring_board'),
     );
     const iOSPlatformChannelSpecifics = DarwinNotificationDetails(
       sound: 'slow_spring_board.aiff',
@@ -135,7 +134,7 @@ class LocalNotificationService {
   tz.TZDateTime _nextInstanceOfTenAM() {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduledDate =
-    tz.TZDateTime(tz.local, now.year, now.month, now.day, now.hour, 18);
+    tz.TZDateTime(tz.local, now.year, now.month, now.day, now.hour, 2);
     // if (scheduledDate.isBefore(now)) {
     //   scheduledDate = scheduledDate.add(const Duration(days: 1));
     // }
