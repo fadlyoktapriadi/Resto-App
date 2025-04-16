@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:resto_app/provider/setting/SharedPreferecesProvider.dart';
+import 'package:resto_app/data/local/shared_preferences_provider.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
