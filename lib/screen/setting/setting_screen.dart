@@ -25,9 +25,16 @@ class _SettingScreenState extends State<SettingScreen> {
     context.read<LocalNotificationProvider>().scheduleDailyTenAMNotification();
   }
 
+  Future<void> _toggleDailyNotification() async {
+    context.read<LocalNotificationProvider>().toggleDailyNotification(
+      context.read<LocalNotificationProvider>().toggleDailyReminderStatus,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<SharedPreferencesProvider>(context);
+    final localNotificationProvider = Provider.of<LocalNotificationProvider>(context);
 
     return Scaffold(
       body: SafeArea(
@@ -57,6 +64,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     themeProvider.toggleTheme();
                   },
                 ),
+                SwitchListTile(
+                  title: const Text("Lunch Reminder at 11:00 AM"),
+                  value: localNotificationProvider.toggleDailyReminderStatus,
+                  onChanged: (value) async {
+                    if (value) {
+                      await _toggleDailyNotification();
+                    }
+                  },
+                ),
+
                 ElevatedButton(
                   onPressed: () async {
                     await _requestPermission();

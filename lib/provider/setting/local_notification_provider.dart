@@ -11,8 +11,10 @@ class LocalNotificationProvider extends ChangeNotifier {
   bool? _permission = false;
   bool? get permission => _permission;
 
-  // todo-02-provider-01: add the state
   List<PendingNotificationRequest> pendingNotificationRequests = [];
+
+  bool _toggleDailyReminderStatus = false;
+  bool get toggleDailyReminderStatus => _toggleDailyReminderStatus;
 
   Future<void> requestPermissions() async {
     _permission = await flutterNotificationService.requestPermissions();
@@ -48,4 +50,16 @@ class LocalNotificationProvider extends ChangeNotifier {
   Future<void> cancelNotification(int id) async {
     await flutterNotificationService.cancelNotification(id);
   }
+
+  void toggleDailyNotification(bool isEnabled) {
+    _toggleDailyReminderStatus = isEnabled;
+    if (isEnabled) {
+      scheduleDailyTenAMNotification();
+    } else {
+      cancelNotification(1); // Assuming ID 1 is used for the scheduled notification
+    }
+    debugPrint("TEST: $_toggleDailyReminderStatus");
+    notifyListeners();
+  }
+
 }
