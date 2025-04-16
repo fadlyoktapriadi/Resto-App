@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:resto_app/services/local_notification_service.dart';
 
 class LocalNotificationProvider extends ChangeNotifier {
@@ -7,11 +6,9 @@ class LocalNotificationProvider extends ChangeNotifier {
 
   LocalNotificationProvider(this.flutterNotificationService);
 
-  int _notificationId = 0;
+  final int _notificationId = 1;
   bool? _permission = false;
   bool? get permission => _permission;
-
-  List<PendingNotificationRequest> pendingNotificationRequests = [];
 
   bool _toggleDailyReminderStatus = false;
   bool get toggleDailyReminderStatus => _toggleDailyReminderStatus;
@@ -21,44 +18,23 @@ class LocalNotificationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void showNotification() {
-    _notificationId += 1;
-    flutterNotificationService.showNotification(
-      id: _notificationId,
-      title: "New Notification",
-      body: "This is a new notification with id $_notificationId",
-      payload: "This is a payload from notification with id $_notificationId",
-    );
+  Future<void> cancelNotification() async {
+    await flutterNotificationService.cancelNotification(_notificationId);
   }
 
-  // todo-02-provider-02: create a schedule notification
-  void scheduleDailyTenAMNotification() {
-    _notificationId += 1;
-    flutterNotificationService.scheduleDailyTenAMNotification(
+  void dailyLunchNotification() {
+    flutterNotificationService.dailyLunchNotification(
       id: _notificationId,
     );
   }
 
-  // todo-02-provider-03: show a list of pending notification
-  Future<void> checkPendingNotificationRequests(BuildContext context) async {
-    pendingNotificationRequests =
-    await flutterNotificationService.pendingNotificationRequests();
-    notifyListeners();
-  }
-
-  // todo-02-provider-04: cancel a notification
-  Future<void> cancelNotification(int id) async {
-    await flutterNotificationService.cancelNotification(id);
-  }
-
-  void toggleDailyNotification(bool isEnabled) {
-    _toggleDailyReminderStatus = isEnabled;
-    if (isEnabled) {
-      scheduleDailyTenAMNotification();
+  void toggleDailyNotification() {
+    _toggleDailyReminderStatus = !_toggleDailyReminderStatus;
+    if (_toggleDailyReminderStatus) {
+      dailyLunchNotification();
     } else {
-      cancelNotification(1); // Assuming ID 1 is used for the scheduled notification
+      cancelNotification();
     }
-    debugPrint("TEST: $_toggleDailyReminderStatus");
     notifyListeners();
   }
 
