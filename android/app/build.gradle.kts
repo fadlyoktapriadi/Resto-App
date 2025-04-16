@@ -8,12 +8,12 @@ plugins {
 android {
     namespace = "com.example.resto_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "28.0.13004108"
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -29,6 +29,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -41,7 +42,6 @@ android {
 }
 
 dependencies {
-    // Add the core library desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
 

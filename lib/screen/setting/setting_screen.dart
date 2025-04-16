@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resto_app/provider/setting/local_notification_provider.dart';
 import 'package:resto_app/provider/setting/shared_preferences_provider.dart';
+import 'package:resto_app/screen/navigation_route.dart';
 import 'package:resto_app/services/local_notification_service.dart';
+import 'package:resto_app/services/payload_provider.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -13,6 +15,12 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
 
+  void _configureSelectNotificationSubject() {
+    selectNotificationStream.stream.listen((String? payload) {
+      context.read<PayloadProvider>().payload = payload;
+      Navigator.pushNamed(context, NavigationRoute.detailRoute.name, arguments: payload);
+    });
+  }
 
 
   @override
@@ -23,6 +31,12 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Future<void> _scheduleDailyTenAMNotification() async {
     context.read<LocalNotificationProvider>().scheduleDailyTenAMNotification();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _configureSelectNotificationSubject();
   }
 
   @override
