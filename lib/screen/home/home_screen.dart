@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'Resto App.',
                       style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface
+                        color: Theme.of(context).primaryColor
                       ),
                     ),
                   ),
@@ -72,13 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: () {
                           Navigator.pushNamed(context, '/favorite');
                         },
-                        icon: Icon(Icons.favorite_rounded, color: Theme.of(context).colorScheme.onSurface),
+                        icon: Icon(Icons.favorite_rounded, color: Theme.of(context).primaryColor),
                       ),
                       IconButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/settings');
                         },
-                        icon: Icon(Icons.settings, color: Theme.of(context).colorScheme.onSurface,),
+                        icon: Icon(Icons.settings, color: Theme.of(context).primaryColor,),
                       ),
                     ],
                   )

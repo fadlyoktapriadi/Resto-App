@@ -36,7 +36,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                     child: Text(
                       'Resto App.',
                       style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurface,
+                          color: Theme.of(context).primaryColor,
                     ),
                     )
                   ),
