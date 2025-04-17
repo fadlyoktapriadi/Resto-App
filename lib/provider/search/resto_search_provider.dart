@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:resto_app/data/api/api_service.dart';
 import 'package:resto_app/helper/resto_search_result_state.dart';

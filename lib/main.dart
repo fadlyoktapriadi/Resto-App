@@ -76,7 +76,6 @@ void main() async {
         Provider(
           create: (context) => LocalNotificationService()
             ..init()
-          // todo-01-notif-07: configure the timezone
             ..configureLocalTimeZone(),
         ),
         ChangeNotifierProvider(

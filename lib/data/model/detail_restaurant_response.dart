@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'customer_review.dart';
 
 DetailRestaurantResponse detailRestaurantResponseFromJson(String str) => DetailRestaurantResponse.fromJson(json.decode(str));
